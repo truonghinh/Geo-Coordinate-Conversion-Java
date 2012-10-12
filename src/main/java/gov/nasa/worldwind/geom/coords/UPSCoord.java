@@ -40,9 +40,7 @@ public class UPSCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Latitude Or Longitude Is Null");
         }
 
         final UPSCoordConverter converter = new UPSCoordConverter();
@@ -50,9 +48,7 @@ public class UPSCoord
 
         if (err != UPSCoordConverter.UPS_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.UPSConversionError");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("UPS Conversion Error");
         }
 
         return new UPSCoord(latitude, longitude, converter.getHemisphere(),
@@ -79,9 +75,7 @@ public class UPSCoord
 
         if (err != UTMCoordConverter.UTM_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.UTMConversionError");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("UTM Conversion Error");
         }
 
         return new UPSCoord(Angle.fromRadians(converter.getLatitude()),
@@ -106,9 +100,7 @@ public class UPSCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Latitude Or Longitude Is Null");
         }
 
         this.latitude = latitude;

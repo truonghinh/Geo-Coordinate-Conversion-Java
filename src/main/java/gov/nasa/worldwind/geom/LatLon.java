@@ -896,7 +896,8 @@ public class LatLon
         {
             throw new IllegalArgumentException("Locations List Is Null");
         }
-        Iterator iter = locations.iterator();
+        
+        Iterator<? extends LatLon> iter = locations.iterator();
         if (!iter.hasNext())
             return Collections.emptyList();
 

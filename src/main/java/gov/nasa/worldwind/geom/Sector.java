@@ -7,7 +7,6 @@ package gov.nasa.worldwind.geom;
 
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.coords.UTMCoord;
-import gov.nasa.worldwind.util.Logging;
 
 import java.awt.geom.*;
 import java.util.*;
@@ -71,16 +70,12 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (array == null)
         {
-            String message = Logging.getMessage("nullValue.ArrayIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Array Is Null");
         }
 
         if (array.length < 4)
         {
-            String message = Logging.getMessage("generic.ArrayInvalidLength", array.length);
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Array Invalid Length");
         }
 
         return fromDegrees(array[0], array[1], array[2], array[3]);
@@ -143,16 +138,12 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (zone < 1 || zone > 60)
         {
-            String message = Logging.getMessage("generic.ZoneIsInvalid", zone);
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Zone Is Invalid");
         }
 
         if (!AVKey.NORTH.equals(hemisphere) && !AVKey.SOUTH.equals(hemisphere))
         {
-            String message = Logging.getMessage("generic.HemisphereIsInvalid", hemisphere);
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Hemisphere Is Invalid");
         }
 
         LatLon ll = UTMCoord.locationFromUTMCoord(zone, hemisphere, minEasting, minNorthing);
@@ -168,9 +159,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (locations == null)
         {
-            String message = Logging.getMessage("nullValue.PositionsListIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Positions List Is Null");
         }
 
         if (!locations.iterator().hasNext())
@@ -203,9 +192,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (locations == null)
         {
-            String message = Logging.getMessage("nullValue.LocationInListIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Location In List Is Null");
         }
 
         if (!locations.iterator().hasNext())
@@ -262,9 +249,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (pA == null || pB == null)
         {
-            String message = Logging.getMessage("nullValue.PositionsListIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Positions List Is Null");
         }
 
         double minLat = pA.getLatitude().degrees;
@@ -300,9 +285,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (minLatitude == null || maxLatitude == null || minLongitude == null || maxLongitude == null)
         {
-            String message = Logging.getMessage("nullValue.InputAnglesNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Input Angles Null");
         }
 
         this.minLatitude = minLatitude;
@@ -317,9 +300,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (sector == null)
         {
-            String message = Logging.getMessage("nullValue.SectorIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Sector Is Null");
         }
 
         this.minLatitude = new Angle(sector.getMinLatitude());
@@ -420,9 +401,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (corners == null)
         {
-            String message = Logging.getMessage("nullValue.LocationsListIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Locations List Is Null");
         }
 
         if (!isSector(corners))
@@ -433,14 +412,11 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
         return s.equals(this);
     }
 
-    @SuppressWarnings({"RedundantIfStatement"})
     public static boolean isSector(Iterable<? extends LatLon> corners)
     {
         if (corners == null)
         {
-            String message = Logging.getMessage("nullValue.LocationsListIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Locations List Is Null");
         }
 
         LatLon[] latlons = new LatLon[5];
@@ -486,9 +462,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatLonIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("LatLon Is Null");
         }
 
         return containsDegrees(latitude.degrees, longitude.degrees);
@@ -509,9 +483,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (latLon == null)
         {
-            String message = Logging.getMessage("nullValue.LatLonIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("LatLon Is Null");
         }
 
         return this.contains(latLon.getLatitude(), latLon.getLongitude());
@@ -642,16 +614,12 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (begin == null)
         {
-            String message = Logging.getMessage("nullValue.BeginIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Begin Is Null");
         }
 
         if (end == null)
         {
-            String message = Logging.getMessage("nullValue.EndIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("End Is Null");
         }
 
         Vec4 segmentBegin = new Vec4(begin.getLongitude().degrees, begin.getLatitude().degrees, 0);
@@ -757,9 +725,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (sectors == null)
         {
-            String msg = Logging.getMessage("nullValue.SectorListIsNull");
-            Logging.logger().severe(msg);
-            throw new IllegalArgumentException(msg);
+            throw new IllegalArgumentException("Sector List Is Null");
         }
 
         Angle minLat = Angle.POS90;
@@ -931,9 +897,7 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
     {
         if (that == null)
         {
-            String msg = Logging.getMessage("nullValue.SectorIsNull");
-            Logging.logger().severe(msg);
-            throw new IllegalArgumentException(msg);
+            throw new IllegalArgumentException("Sector Is Null");
         }
 
         if (this.getMinLatitude().compareTo(that.getMinLatitude()) < 0)

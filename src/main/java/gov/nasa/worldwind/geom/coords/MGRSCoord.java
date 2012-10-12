@@ -53,9 +53,7 @@ public class MGRSCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Latitude Or Longitude Is Null");
         }
 
         final MGRSCoordConverter converter = new MGRSCoordConverter();
@@ -63,9 +61,7 @@ public class MGRSCoord
 
         if (err != MGRSCoordConverter.MGRS_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.MGRSConversionError");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("MGRS Conversion Error");
         }
 
         return new MGRSCoord(latitude, longitude, converter.getMGRSString());
@@ -91,9 +87,7 @@ public class MGRSCoord
     {
         if (MGRSString == null || MGRSString.length() == 0)
         {
-            String message = Logging.getMessage("nullValue.StringIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("String Is Null");
         }
 
         MGRSString = MGRSString.toUpperCase().replaceAll(" ", "");
@@ -103,9 +97,7 @@ public class MGRSCoord
 
         if (err != MGRSCoordConverter.MGRS_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.MGRSConversionError");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("MGRS Conversion Error");
         }
 
         return new MGRSCoord(Angle.fromRadians(converter.getLatitude()), Angle.fromRadians(converter.getLongitude()), MGRSString);
@@ -125,21 +117,15 @@ public class MGRSCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Latitude Or Longitude Is Null");
         }
         if (MGRSString == null)
         {
-            String message = Logging.getMessage("nullValue.StringIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("String Is Null");
         }
         if (MGRSString.length() == 0)
         {
-            String message = Logging.getMessage("generic.StringIsEmpty");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("String Is Empty");
         }
         this.latitude = latitude;
         this.longitude = longitude;

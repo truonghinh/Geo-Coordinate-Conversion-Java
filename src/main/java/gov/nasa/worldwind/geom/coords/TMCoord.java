@@ -54,15 +54,11 @@ public class TMCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Latitude Or Longitude Is Null");
         }
         if (originLatitude == null || centralMeridian == null)
         {
-            String message = Logging.getMessage("nullValue.AngleIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Angle Is Null");
         }
 
         final TMCoordConverter converter = new TMCoordConverter();
@@ -78,9 +74,7 @@ public class TMCoord
 
         if (err != TMCoordConverter.TRANMERC_NO_ERROR && err != TMCoordConverter.TRANMERC_LON_WARNING)
         {
-            String message = Logging.getMessage("Coord.TMConversionError");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("TM Conversion Error");
         }
 
         return new TMCoord(latitude, longitude, converter.getEasting(), converter.getNorthing(),
@@ -111,9 +105,7 @@ public class TMCoord
     {
         if (originLatitude == null || centralMeridian == null)
         {
-            String message = Logging.getMessage("nullValue.AngleIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Angle Is Null");
         }
 
         final TMCoordConverter converter = new TMCoordConverter();
@@ -127,9 +119,7 @@ public class TMCoord
 
         if (err != TMCoordConverter.TRANMERC_NO_ERROR && err != TMCoordConverter.TRANMERC_LON_WARNING)
         {
-            String message = Logging.getMessage("Coord.TMConversionError");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("TM Conversion Error");
         }
 
         return new TMCoord(Angle.fromRadians(converter.getLatitude()), Angle.fromRadians(converter.getLongitude()),
@@ -158,15 +148,11 @@ public class TMCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Latitude Or Longitude Is Null");
         }
         if (originLatitude == null || centralMeridian == null)
         {
-            String message = Logging.getMessage("nullValue.AngleIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Angle Is Null");
         }
 
         this.latitude = latitude;

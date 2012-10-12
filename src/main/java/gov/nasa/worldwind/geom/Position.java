@@ -109,9 +109,7 @@ public class Position extends LatLon
     {
         if (value1 == null || value2 == null)
         {
-            String message = Logging.getMessage("nullValue.PositionIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Position Is Null");
         }
 
         if (amount < 0)
@@ -149,9 +147,7 @@ public class Position extends LatLon
     {
         if (value1 == null || value2 == null)
         {
-            String message = Logging.getMessage("nullValue.PositionIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Position Is Null");
         }
 
         LatLon latLon = LatLon.interpolateGreatCircle(amount, value1, value2);
@@ -184,9 +180,7 @@ public class Position extends LatLon
     {
         if (value1 == null || value2 == null)
         {
-            String message = Logging.getMessage("nullValue.PositionIsNull");
-            Logging.logger().severe(message);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException("Position Is Null");
         }
 
         LatLon latLon = LatLon.interpolateRhumb(amount, value1, value2);
@@ -201,9 +195,7 @@ public class Position extends LatLon
     {
         if (positions == null)
         {
-            String msg = Logging.getMessage("nullValue.PositionsListIsNull");
-            Logging.logger().severe(msg);
-            throw new IllegalArgumentException(msg);
+            throw new IllegalArgumentException("Positions List Is Null");
         }
 
         Position pos = null;
@@ -243,16 +235,12 @@ public class Position extends LatLon
         // TODO: Account for dateline spanning
         if (oldPosition == null || newPosition == null)
         {
-            String msg = Logging.getMessage("nullValue.PositionIsNull");
-            Logging.logger().severe(msg);
-            throw new IllegalArgumentException(msg);
+            throw new IllegalArgumentException("Position Is Null");
         }
 
         if (positions == null)
         {
-            String msg = Logging.getMessage("nullValue.PositionsListIsNull");
-            Logging.logger().severe(msg);
-            throw new IllegalArgumentException(msg);
+            throw new IllegalArgumentException("Positions List Is Null");
         }
 
         ArrayList<Position> newPositions = new ArrayList<Position>();
