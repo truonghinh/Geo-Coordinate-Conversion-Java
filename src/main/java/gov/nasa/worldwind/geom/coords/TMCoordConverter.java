@@ -370,7 +370,7 @@ class TMCoordConverter
         double eta4;
         double ftphi;   /* Footpoint latitude                              */
         int i;       /* Loop iterator                   */
-        double s;       /* Sine of latitude                        */
+        //double s;       /* Sine of latitude                        */
         double sn;      /* Radius of curvature in the prime vertical       */
         double sr;      /* Radius of curvature in the meridian             */
         double t;       /* Tangent of latitude                             */
@@ -443,7 +443,7 @@ class TMCoordConverter
             sn = TranMerc_a / Math.sqrt(1.e0 - TranMerc_es * Math.pow(Math.sin(ftphi), 2));
 
             /* Sine Cosine terms */
-            s = Math.sin(ftphi);
+            //s = Math.sin(ftphi);
             c = Math.cos(ftphi);
 
             /* Tangent Value  */

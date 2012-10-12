@@ -5,10 +5,6 @@
  */
 package gov.nasa.worldwind.geom;
 
-import gov.nasa.worldwind.avlist.AVKey;
-import gov.nasa.worldwind.geom.coords.UTMCoord;
-
-import java.awt.geom.*;
 import java.util.*;
 
 /**
@@ -114,46 +110,6 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
         return new Sector(Angle.fromRadians(minLatitude), Angle.fromRadians(maxLatitude), Angle.fromRadians(
             minLongitude), Angle.fromRadians(maxLongitude));
     }
-
-    /**
-     * Returns a geographic Sector which bounds the specified UTM rectangle. The UTM rectangle is located in specified
-     * UTM zone and hemisphere.
-     *
-     * @param zone        the UTM zone.
-     * @param hemisphere  the UTM hemisphere, either {@link gov.nasa.worldwind.avlist.AVKey#NORTH} or {@link
-     *                    gov.nasa.worldwind.avlist.AVKey#SOUTH}.
-     * @param minEasting  the minimum UTM easting, in meters.
-     * @param maxEasting  the maximum UTM easting, in meters.
-     * @param minNorthing the minimum UTM northing, in meters.
-     * @param maxNorthing the maximum UTM northing, in meters.
-     *
-     * @return a Sector that bounds the specified UTM rectangle.
-     *
-     * @throws IllegalArgumentException if <code>zone</code> is outside the range 1-60, if <code>hemisphere</code> is
-     *                                  null, or if <code>hemisphere</code> is not one of {@link
-     *                                  gov.nasa.worldwind.avlist.AVKey#NORTH} or {@link gov.nasa.worldwind.avlist.AVKey#SOUTH}.
-     */
-    public static Sector fromUTMRectangle(int zone, String hemisphere, double minEasting, double maxEasting,
-        double minNorthing, double maxNorthing)
-    {
-        if (zone < 1 || zone > 60)
-        {
-            throw new IllegalArgumentException("Zone Is Invalid");
-        }
-
-        if (!AVKey.NORTH.equals(hemisphere) && !AVKey.SOUTH.equals(hemisphere))
-        {
-            throw new IllegalArgumentException("Hemisphere Is Invalid");
-        }
-
-        LatLon ll = UTMCoord.locationFromUTMCoord(zone, hemisphere, minEasting, minNorthing);
-        LatLon lr = UTMCoord.locationFromUTMCoord(zone, hemisphere, maxEasting, minNorthing);
-        LatLon ur = UTMCoord.locationFromUTMCoord(zone, hemisphere, maxEasting, maxNorthing);
-        LatLon ul = UTMCoord.locationFromUTMCoord(zone, hemisphere, minEasting, maxNorthing);
-
-        return boundingSector(Arrays.asList(ll, lr, ur, ul));
-    }
-
 
     public static Sector boundingSector(Iterable<? extends LatLon> locations)
     {
@@ -833,18 +789,6 @@ public class Sector implements Comparable<Sector>, Iterable<LatLon>
                 this.minLatitude.degrees, this.maxLatitude.degrees,
                 this.minLongitude.degrees, this.maxLongitude.degrees
             };
-    }
-
-    /**
-     * Returns a {@link java.awt.geom.Rectangle2D} corresponding to this Sector in degrees lat-lon coordinates where x
-     * corresponds to longitude and y to latitude.
-     *
-     * @return a {@link java.awt.geom.Rectangle2D} corresponding to this Sector in degrees lat-lon coordinates.
-     */
-    public Rectangle2D toRectangleDegrees()
-    {
-        return new Rectangle2D.Double(this.getMinLongitude().degrees, this.getMinLatitude().degrees,
-            this.getDeltaLonDegrees(), this.getDeltaLatDegrees());
     }
 
     /**

@@ -5,7 +5,6 @@
  */
 package gov.nasa.worldwind.geom;
 
-import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.util.*;
 
 import java.util.*;
@@ -126,50 +125,6 @@ public class LatLon
     public double[] asRadiansArray()
     {
         return new double[] {this.getLatitude().radians, this.getLongitude().radians};
-    }
-
-    /**
-     * Returns an interpolated location between <code>value1</code> and <code>value2</code>, according to the specified
-     * path type. If the path type is {@link AVKey#GREAT_CIRCLE} this returns an interpolated value on the great arc
-     * that spans the two locations (see {@link #interpolateGreatCircle(double, LatLon, LatLon)}). If the path type is
-     * {@link AVKey#RHUMB_LINE} or {@link AVKey#LOXODROME} this returns an interpolated value on the rhumb line that
-     * spans the two locations (see {@link #interpolateRhumb(double, LatLon, LatLon)}. Otherwise, this returns the
-     * linear interpolation of the two locations (see {@link #interpolate(double, LatLon, LatLon)}.
-     *
-     * @param pathType the path type used to interpolate between geographic locations.
-     * @param amount   the interpolation factor
-     * @param value1   the first location.
-     * @param value2   the second location.
-     *
-     * @return an interpolated location between <code>value1</code> and <code>value2</code>, according to the specified
-     *         path type.
-     *
-     * @throws IllegalArgumentException if the path type or either location is null.
-     */
-    public static LatLon interpolate(String pathType, double amount, LatLon value1, LatLon value2)
-    {
-        if (pathType == null)
-        {
-            throw new IllegalArgumentException("Path Type Is Null");
-        }
-
-        if (value1 == null || value2 == null)
-        {
-            throw new IllegalArgumentException("Lat Lon Is Null");
-        }
-
-        if (pathType.equals(AVKey.GREAT_CIRCLE))
-        {
-            return interpolateGreatCircle(amount, value1, value2);
-        }
-        else if (pathType.equals(AVKey.RHUMB_LINE) || pathType.equals(AVKey.LOXODROME))
-        {
-            return interpolateRhumb(amount, value1, value2);
-        }
-        else // Default to linear interpolation.
-        {
-            return interpolate(amount, value1, value2);
-        }
     }
 
     /**

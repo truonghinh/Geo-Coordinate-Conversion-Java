@@ -17,7 +17,7 @@ public class Example
     		
     		System.out.println(coord);
     		
-    		MGRSCoord coord2 = MGRSCoord.fromString("50RQT0532022012");
+    		MGRSCoord coord2 = MGRSCoord.fromString(coord.toString());
     		
     		System.out.println(
     			String.format("%s, %s", 

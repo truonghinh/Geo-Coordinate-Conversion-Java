@@ -6,7 +6,6 @@
 package gov.nasa.worldwind.geom.coords;
 
 import gov.nasa.worldwind.geom.Angle;
-import gov.nasa.worldwind.util.Logging;
 
 /**
  * This class holds a set of Transverse Mercator coordinates along with the

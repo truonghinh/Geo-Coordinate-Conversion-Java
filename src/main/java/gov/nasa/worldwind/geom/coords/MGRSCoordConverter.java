@@ -61,7 +61,6 @@ class MGRSCoordConverter
     // Ellipsoid parameters, default to WGS 84
     private double MGRS_a = 6378137.0;          // Semi-major axis of ellipsoid in meters
     private double MGRS_f = 1 / 298.257223563;  // Flattening of ellipsoid
-    private double MGRS_recpf = 298.257223563;
     private String MGRS_Ellipsoid_Code = "WE";
 
     private String MGRSString = "";
@@ -258,7 +257,6 @@ class MGRSCoordConverter
         }
         else if (error_code == MGRS_NOZONE_WARNING)
         {
-            // TODO: polar conversion
             UPSCoord UPS = convertMGRSToUPS(MGRSString);
             if (UPS != null)
             {
@@ -492,13 +490,9 @@ class MGRSCoordConverter
      */
     private UTMCoord convertMGRSToUTM(String MGRSString)
     {
-        double scaled_min_northing;
         double grid_easting;        /* Easting for 100,000 meter grid square      */
         double grid_northing;       /* Northing for 100,000 meter grid square     */
-        double temp_grid_northing = 0.0;
-        double fabs_grid_northing = 0.0;
         double latitude = 0.0;
-        double longitude = 0.0;
         double divisor = 1.0;
         long error_code = MGRS_NO_ERROR;
 
@@ -611,10 +605,6 @@ class MGRSCoordConverter
      */
     public long convertGeodeticToMGRS(double latitude, double longitude, int precision)
     {
-        String Hemisphere = AVKey.NORTH;
-        double Easting = 0.0;
-        double Northing = 0.0;
-
         MGRSString = "";
 
         long error_code = MGRS_NO_ERROR;
@@ -635,7 +625,6 @@ class MGRSCoordConverter
         {
             if ((latitude < MIN_UTM_LAT) || (latitude > MAX_UTM_LAT))
             {
-                // TODO: polar
                 try
                 {
                     UPSCoord UPS =
@@ -981,7 +970,7 @@ class MGRSCoordConverter
         {
 
             if (Letters[j] < 0 || Letters[j] > 26)
-                return MGRS_ZONE_ERROR;  // TODO: Find out why this happens
+                return MGRS_ZONE_ERROR; 
             MGRSString = MGRSString + alphabet.charAt((int) Letters[j]);
         }
 

@@ -7,7 +7,6 @@ package gov.nasa.worldwind.geom.coords;
 
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.geom.Angle;
-import gov.nasa.worldwind.util.Logging;
 
 /**
  * This immutable class holds a set of UPS coordinates along with it's corresponding latitude and longitude.
